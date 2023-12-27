@@ -1,0 +1,47 @@
+body{
+    
+    margin: auto;
+    width: 700px;
+    height: 500px;
+    
+}
+
+header{
+    text-align: center;
+}
+
+main{
+    background-color: blue;
+    border-radius: 12px;
+    padding: 20x;
+    margin: 10px;
+}
+
+fieldset, form{
+    margin: 10px;
+    border: none;
+    padding: 15px;
+    color: white;
+}
+
+#botao{
+    background-color: green;
+    color: black;
+    border-radius: 10px;
+    border-color: yellow;
+    font-weight: bold;
+}
+
+legend{
+    font-weight: bolder;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    color: white;
+}
+
+table{
+    padding: 10px;
+    color: antiquewhite;
+}
+
+
