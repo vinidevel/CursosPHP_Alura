@@ -1,72 +1,41 @@
-<?php  
+<?php
 
-require_once 'src/conta.php';
-require_once 'src/titular.php';
-require_once 'src/cpf.php';
-require_once 'src/endereco.php';
+require_once 'src/Modelo/Conta/Conta.php';
+require_once 'src/Modelo/Endereco.php';
+require_once 'src/Modelo/Pessoa.php';
+require_once 'src/Modelo/Conta/Titular.php';
+require_once 'src/Modelo/CPF.php';
+require_once 'src/funcoes/funcoes.php';
+
+// spl_autoload_register(function (string $nomeCompletoDaClasse){
+//     $caminhoArquivo = str_replace('Alura\\Banco', 'src', $nomeCompletoDaClasse);
+//     $caminhoArquivo .= '.php';
+
+//     if(file_exists($caminhoArquivo)) {
+//         require $caminhoArquivo;
+//     }
+// });
 
 
-// $terceiraConta = new Conta(new Titular('123.456.789-10', 'Vincius C. de Amorim'));
+
+use Alura\Banco\Modelo\Conta\Titular;
+use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\CPF;
+use Alura\Banco\Modelo\Conta\Conta;
+use Alura\Banco\Modelo\Pessoa;
 
 $endereco = new Endereco('Petrópolis', 'um bairro', 'minha rua', '71B');
-$vinicius = new Titular(new Cpf('123.456.789-10'), 'Vinicius Dias', $endereco);
-$terceiraConta = new Conta($vinicius);
+$vinicius = new Titular(new CPF('123.456.789-10'), 'Vinicius Dias', $endereco);
+$primeiraConta = new Conta($vinicius);
+$primeiraConta->deposita(500);
+$primeiraConta->saca(300); // isso é ok
 
-// $terceiraConta = new Conta(new Cpf('123.456.789-10', 'Vincius C. de Amorim'));
-
-// echo $terceiraConta->validaNomeTitular();
-
+echo $primeiraConta->recuperaSaldo();
 pulalinha();
-
-
-// parâmetros passados pelo construtor e não mais pelos métodos
-// $terceiraConta->defineCpfTitular('123.456.789-10');
-// $terceiraConta->defineNomeTitular('Vincius C. de Amorim');
-$terceiraConta->deposita(600);
-$terceiraConta->deposita(500);
-
-
-echo $terceiraConta->recuperaSaldo();
+echo $primeiraConta->recuperaCpfTitular();
 pulalinha();
-echo $terceiraConta->recuperaCpfTitular();
+echo $primeiraConta->recuperaNomeTitular();
 pulalinha();
-echo $terceiraConta->recuperarNomeTitular();
-pulalinha();
+// echo $primeiraConta->recuperaEnderecoTitular();
+// pulalinha();
 
-// $quartaConta = new Conta(new Titular('111.555.789-10', 'Joao C. de Amorim'));
-$joao = new Titular(new Cpf('111.555.789-10'), 'Joao C. de Amorim', $endereco);
-$quartaConta = new Conta($joao);
-
-
-
-// parâmetros passados pelo construtor e não mais pelos métodos
-// $quartaConta->defineCpfTitular('111.555.789-10');
-// $quartaConta->defineNomeTitular('Joao C. de Amorim');
-$quartaConta->deposita(1000);
-
-
-echo $quartaConta->recuperaSaldo();
-pulalinha();
-echo $quartaConta->recuperaCpfTitular();
-pulalinha();
-echo $quartaConta->recuperarNomeTitular();
-
-pulalinha();
-
-$quartaConta->transfere(500, $terceiraConta);
-
-echo $quartaConta->recuperaSaldo();
-pulalinha();
-
-echo $terceiraConta->recuperaSaldo();
-pulalinha();
-
-// var_dump($terceiraConta);
-
-// var_dump($quartaConta);
-
-pulalinha();
-
-// echo' O número de contas é: ' . Conta::recuperarNumerodeContas();
-
-echo "O número de contas é:" . Conta::recuperaNumeroDeContas();
